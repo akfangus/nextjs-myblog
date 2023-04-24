@@ -12,7 +12,7 @@ const PostCard = ({
 }: Props) => {
   return (
     <Link href={`/posts/${path}`}>
-      <article className="rounded-md overflow-hidden shadow-lg">
+      <article className="rounded-md overflow-hidden shadow-lg hover:shadow-2xl">
         <Image
           className="w-full"
           src={`/images/posts/${path}.png`}
@@ -21,7 +21,7 @@ const PostCard = ({
           height={300}
         />
         <div className="flex flex-col items-center p-4">
-          <time className="self-end">{date.toString()}</time>
+          <time className="self-end text-gray-700">{date.toString()}</time>
           <h3 className="text-lg font-bold">{title}</h3>
           <p className="w-full truncate text-center">{description}</p>
           <span className="text-sm rounded-lg bg-green-100 my-2">
