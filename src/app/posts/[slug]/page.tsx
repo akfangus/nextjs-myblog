@@ -1,7 +1,6 @@
-import MarkdownViewer from "@/components/MarkdownViewer";
+import PostContent from "@/components/PostContent";
 import { getPostData } from "@/service/posts";
 import Image from "next/image";
-import { AiTwotoneCalendar } from "react-icons/ai";
 
 type Props = {
   params: {
@@ -13,7 +12,8 @@ const Postpage = async ({ params: { slug } }: Props) => {
   //1.전달된 slug에 해당하는 포스트데이터를 가져옴
   //2. 그 데이터를 markdown 뷰어에 넘김(content)
   //   const post = await getPostData(slug);
-  const { title, description, date, path, content } = await getPostData(slug);
+  const post = await getPostData(slug);
+  const { title, path } = post;
   return (
     <article className="rounded-2xl overflow-hidden bg-gray-100 shadow-lg m-5">
       <Image
@@ -23,17 +23,7 @@ const Postpage = async ({ params: { slug } }: Props) => {
         width={760}
         height={420}
       />
-      <section className="flex flex-col p-4">
-        <div className="flex items-center self-end text-sky-600">
-          <AiTwotoneCalendar />
-          <p className="font-semibold ml-2">{date.toString()}</p>
-        </div>
-        <h1 className="text-4xl font-bold">{title}</h1>
-        <p className="text-xl font-semibold">{description}</p>
-
-        <div className="w-52 border-2 border-sky-600 mt-4 mb-8" />
-        <MarkdownViewer content={content} />
-      </section>
+      <PostContent post={post} />
     </article>
   );
 };
