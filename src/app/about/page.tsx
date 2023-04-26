@@ -1,5 +1,11 @@
 import Hero from "@/components/Hero";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "About Me",
+  description: "내 정보 및 커리어 소개",
+};
 
 const AboutPage = () => {
   return (

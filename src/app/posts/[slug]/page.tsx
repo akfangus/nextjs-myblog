@@ -1,6 +1,7 @@
 import AdjacentPostCard from "@/components/AdjacentPostCard";
 import PostContent from "@/components/PostContent";
 import { getPostData } from "@/service/posts";
+import { Metadata } from "next";
 import Image from "next/image";
 
 type Props = {
@@ -8,6 +9,16 @@ type Props = {
     slug: string;
   };
 };
+
+export async function generateMetadata({
+  params: { slug },
+}: Props): Promise<Metadata> {
+  const { title, description } = await getPostData(slug);
+  return {
+    title,
+    description,
+  };
+}
 
 const Postpage = async ({ params: { slug } }: Props) => {
   //1.전달된 slug에 해당하는 포스트데이터를 가져옴
